@@ -6,7 +6,7 @@ on:
       - main
       - next
 
-permission:
+permissions:
   content: write
   issue: write
   pull-request: write
