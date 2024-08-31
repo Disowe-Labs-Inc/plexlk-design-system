@@ -1,18 +1,22 @@
 {
   "name": "@plexlk/plexlk-design-system",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.0-development",
+  "description": "PlexLK Common Desing System",
   "type": "module",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/plexlk-design-system-umd.cjs",
   "module": "dist/plexlk-design-system.js",
   "exports": {
-   ".": {
+    ".": {
       "import": "./dist/plexlk-design-system.js",
       "require": "./dist/plexlk-design-system-umd.cjs"
-    } 
+    }
   },
   "scripts": {
     "dev": "vite",
@@ -20,7 +24,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -47,6 +52,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "globals": "^15.9.0",
     "postcss": "^8.4.41",
+    "semantic-release": "^24.1.0",
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",

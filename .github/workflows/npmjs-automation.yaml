@@ -1,8 +1,15 @@
 name: Plex.LK Node Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
+      - next
+
+permission:
+  content: write
+  issue: write
+  pull-request: write
 
 jobs:
   build:
@@ -13,20 +20,10 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
+      - run: npm run build
+      - run: npm audit signatures
+      - run: Release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+        run: npx semantic-release
