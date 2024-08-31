@@ -7,9 +7,9 @@ on:
       - next
 
 permissions:
-  content: write
-  issue: write
-  pull-request: write
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   build:
